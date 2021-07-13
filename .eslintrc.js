@@ -21,7 +21,19 @@ module.exports = {
       files: ['*.test.ts', '*.test.js'],
       extends: ['@metamask/eslint-config-jest'],
     },
+    {
+      files: 'webpack.config.js',
+      rules: {
+        'node/no-unpublished-require': 0,
+      },
+    },
   ],
 
-  ignorePatterns: ['!.eslintrc.js', '!.prettierrc.js', 'dist/'],
+  ignorePatterns: [
+    '!.eslintrc.js',
+    '!.prettierrc.js',
+    'dist/',
+    'public/',
+    'src/__GENERATED_TYPES__',
+  ],
 };

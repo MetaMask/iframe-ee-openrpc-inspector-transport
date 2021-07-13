@@ -8,7 +8,7 @@ This adds [Iframe Execution Environment](https://github.com/MetaMask/iframe-exec
 2. Click `HTTP` transport dropdown
 3. Select `+ Add Transport`
 4. Add plugin name: `Metamask Iframe EE`
-5. Add plugin url: `https://metamask.github.io/openrpc-iframe-execution-environment-transport`
+5. Add plugin url: `https://metamask.github.io//iframe-ee-openrpc-inspector-transport`
 6. Select `POSTMESSAGEIFRAME` as the transport type
 7. Click `Add Transport`
 

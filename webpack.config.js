@@ -16,8 +16,7 @@ module.exports = (_, argv) => {
       devtool: 'inline-source-map',
     };
   }
-  const config = {
-    ...extraOptions,
+  const config = Object.assign(extraOptions, {
     mode: argv.mode || 'development',
     entry: './src/index.ts',
     output: {
@@ -46,6 +45,6 @@ module.exports = (_, argv) => {
     resolve: {
       extensions: ['.ts', '.js'],
     },
-  };
+  });
   return config;
 };
