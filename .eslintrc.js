@@ -21,12 +21,6 @@ module.exports = {
       files: ['*.test.ts', '*.test.js'],
       extends: ['@metamask/eslint-config-jest'],
     },
-    {
-      files: 'webpack.config.js',
-      rules: {
-        'node/no-unpublished-require': 0,
-      },
-    },
   ],
 
   ignorePatterns: [
