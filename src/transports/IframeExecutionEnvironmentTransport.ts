@@ -22,11 +22,16 @@ class IframeExecutionEnvironmentTransport extends Transport {
     this.postMessageID = `post-message-transport-${Math.random()}`;
   }
 
-  public createWindow(uri: string): Promise<Window> {
+  public createWindow(uri: string, timeout = 10000): Promise<Window> {
     const iframe = document.createElement('iframe');
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
+      const errorTimeout = setTimeout(() => {
+        this.close();
+        reject(new Error(`Timed out creating iframe window: ${uri}`));
+      }, timeout);
       iframe.addEventListener('load', () => {
         if (iframe.contentWindow) {
+          clearTimeout(errorTimeout);
           resolve(iframe.contentWindow);
         }
       });
@@ -72,9 +77,7 @@ class IframeExecutionEnvironmentTransport extends Transport {
     const duplexStream = stream as unknown as Duplex;
     pump(duplexStream, mux as unknown as Duplex, duplexStream, (err) => {
       if (err) {
-        streamName
-          ? console.error(`${streamName} stream failure.`, err)
-          : console.error(err);
+        console.error(`${streamName} stream failure.`, err);
       }
     });
     return mux;
