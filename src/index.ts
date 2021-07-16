@@ -34,28 +34,27 @@ window.addEventListener('message', async (event: MessageEvent) => {
     );
     return;
   }
-  methodMapping[event.data.method](...event.data.params, event.origin)
-    .then((results: unknown) => {
-      eventSource.postMessage(
-        {
-          jsonrpc: '2.0',
-          result: results,
-          id: event.data.id,
+  try {
+    const results = await methodMapping[event.data.method](...event.data.params, event.origin);
+    eventSource.postMessage(
+      {
+        jsonrpc: '2.0',
+        result: results,
+        id: event.data.id,
+      },
+      event.origin,
+    );
+  } catch (e) {
+    eventSource.postMessage(
+      {
+        jsonrpc: '2.0',
+        error: {
+          code: 32329,
+          message: e.message,
         },
-        event.origin,
-      );
-    })
-    .catch((e: Error) => {
-      eventSource.postMessage(
-        {
-          jsonrpc: '2.0',
-          error: {
-            code: 32329,
-            message: e.message,
-          },
-          id: event.data.id,
-        },
-        event.origin,
-      );
-    });
+        id: event.data.id,
+      },
+      event.origin,
+    );
+  }
 });
