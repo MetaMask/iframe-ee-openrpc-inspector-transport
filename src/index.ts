@@ -1,3 +1,4 @@
+import { ethErrors, serializeError } from 'eth-rpc-errors';
 import openrpcDocument from './openrpc.json';
 import methodMapping from './methods/methodMapping';
 
@@ -24,10 +25,9 @@ window.addEventListener('message', async (event: MessageEvent) => {
     eventSource.postMessage(
       {
         jsonrpc: '2.0',
-        error: {
-          code: 32009,
-          message: 'Method not found',
-        },
+        error: ethErrors.rpc.methodNotFound({
+          message: `${event.data.method} not found`,
+        }),
         id: event.data.id,
       },
       event.origin,
@@ -51,10 +51,7 @@ window.addEventListener('message', async (event: MessageEvent) => {
     eventSource.postMessage(
       {
         jsonrpc: '2.0',
-        error: {
-          code: 32329,
-          message: e.message,
-        },
+        error: serializeError(e, { shouldIncludeStack: true }),
         id: event.data.id,
       },
       event.origin,
