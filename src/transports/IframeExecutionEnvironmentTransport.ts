@@ -59,7 +59,7 @@ class IframeExecutionEnvironmentTransport extends Transport {
     timeout: number | undefined = 5000,
   ): Promise<any> {
     const prom = this.transportRequestManager.addRequest(data, timeout);
-    this.commandStream?.write((data as IJSONRPCData).request);
+    this.commandStream?.write(data).request);
     return prom;
   }
 
