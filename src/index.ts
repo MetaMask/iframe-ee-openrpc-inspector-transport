@@ -35,7 +35,10 @@ window.addEventListener('message', async (event: MessageEvent) => {
     return;
   }
   try {
-    const results = await methodMapping[event.data.method](...event.data.params, event.origin);
+    const results = await methodMapping[event.data.method](
+      ...event.data.params,
+      event.origin,
+    );
     eventSource.postMessage(
       {
         jsonrpc: '2.0',
