@@ -1,5 +1,5 @@
 {
-  "name": "@metamask/openrpc-inspector-transport",
+  "name": "@metamask/openrpc-ee-inspector-transport",
   "version": "0.0.0-development",
   "description": "",
   "homepage": "https://metamask.github.io/iframe-ee-openrpc-inspector-transport",
@@ -24,18 +24,6 @@
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
     "build:clean": "rimraf dist public && yarn build"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "dependencies": {
     "@metamask/object-multiplex": "^1.2.0",
@@ -75,6 +63,13 @@
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "lavamoat": {
     "allowScripts": {
