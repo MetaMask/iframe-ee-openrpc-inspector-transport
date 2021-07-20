@@ -6,7 +6,7 @@ import ObjectMultiplex from '@metamask/object-multiplex';
 import pump from 'pump';
 
 class IframeExecutionEnvironmentTransport extends Transport {
-  private uri: string;
+  private uri?: string;
 
   private stream?: WindowPostMessageStream;
 
@@ -16,13 +16,12 @@ class IframeExecutionEnvironmentTransport extends Transport {
 
   private postMessageID: string;
 
-  constructor(uri: string) {
+  constructor() {
     super();
-    this.uri = uri;
     this.postMessageID = `post-message-transport-${Math.random()}`;
   }
 
-  public createWindow(uri: string, timeout = 10000): Promise<Window> {
+  public createWindow(uri: string, timeout = 60000): Promise<Window> {
     const iframe = document.createElement('iframe');
     return new Promise((resolve, reject) => {
       const errorTimeout = setTimeout(() => {
@@ -41,7 +40,18 @@ class IframeExecutionEnvironmentTransport extends Transport {
     });
   }
 
+  public async connectWithUri(uri: string): Promise<boolean> {
+    this.uri = uri;
+    this.close();
+    return this.connect();
+  }
+
   public async connect(): Promise<boolean> {
+    if (!this.uri) {
+      throw new Error(
+        'IframeExecutionEnvironmentTransport Error: no uri to connect to',
+      );
+    }
     this.frame = await this.createWindow(this.uri);
     this.stream = new WindowPostMessageStream({
       name: 'parent',

@@ -5,31 +5,31 @@ export interface IMethodMapping {
   [methodName: string]: (...params: any[]) => Promise<unknown>;
 }
 
-let transport: IframeExecutionEnvironmentTransport | undefined;
+const methodMappingFactory = (
+  transport: IframeExecutionEnvironmentTransport,
+) => {
+  const connect: Connect = async (uri: string) => {
+    return transport.connectWithUri(uri);
+  };
 
-const connect: Connect = async (uri: string) => {
-  transport = new IframeExecutionEnvironmentTransport(uri);
-  return transport.connect();
+  const sendData: SendData = (data) => {
+    return transport.sendData({
+      internalID: data.id,
+      request: data,
+    });
+  };
+
+  const close: Close = async () => {
+    transport.close();
+  };
+
+  const methodMapping: IMethodMapping = {
+    connect,
+    sendData,
+    close,
+  };
+
+  return methodMapping;
 };
 
-const sendData: SendData = (data) => {
-  if (!transport) {
-    throw new Error('Not Connected');
-  }
-  return transport.sendData({
-    internalID: data.id,
-    request: data,
-  });
-};
-
-const close: Close = async () => {
-  transport?.close();
-};
-
-const methodMapping: IMethodMapping = {
-  connect,
-  sendData,
-  close,
-};
-
-export default methodMapping;
+export default methodMappingFactory;

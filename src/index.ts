@@ -1,6 +1,11 @@
 import { ethErrors, serializeError } from 'eth-rpc-errors';
 import openrpcDocument from './openrpc.json';
-import methodMapping from './methods/methodMapping';
+import methodMappingFactory from './methods/methodMapping';
+import IframeExecutionEnvironmentTransport from './transports/IframeExecutionEnvironmentTransport';
+
+const methodMapping = methodMappingFactory(
+  new IframeExecutionEnvironmentTransport(),
+);
 
 window.addEventListener('message', async (event: MessageEvent) => {
   if (!event.data.jsonrpc) {
@@ -37,7 +42,6 @@ window.addEventListener('message', async (event: MessageEvent) => {
   try {
     const results = await methodMapping[event.data.method](
       ...event.data.params,
-      event.origin,
     );
     eventSource.postMessage(
       {
