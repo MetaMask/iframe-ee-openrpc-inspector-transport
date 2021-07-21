@@ -6,4 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/MetaMask/iframe-ee-openrpc-inspector-transport/
+## [0.0.1]
+### Added
+- github pages release
+- eth-rpc-errors lib to have better error codes
+- timeout to handle if window never gets created
+- initial OpenRPC Inspector Transport implementation
+
+[Unreleased]: https://github.com/MetaMask/iframe-ee-openrpc-inspector-transport/compare/v0.0.1...HEAD
+[0.0.1]: https://github.com/MetaMask/iframe-ee-openrpc-inspector-transport/releases/tag/v0.0.1
