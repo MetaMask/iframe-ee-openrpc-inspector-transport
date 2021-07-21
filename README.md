@@ -1,22 +1,18 @@
-# MetaMask Module Template
+# Metamask OpenRPC Iframe Execution Environment Transport
 
-This TypeScript module is maintained in the style of the MetaMask team.
+This adds [Iframe Execution Environment](https://github.com/MetaMask/iframe-execution-environment) support to the [OpenRPC inspector](http://inspector.open-rpc.org) via transport plugins.
 
-## Installation
+## Install Instructions
 
-`yarn add @metamask/this-module`
+1. Go to http://inspector.open-rpc.org
+2. Click `HTTP` transport dropdown
+3. Select `+ Add Transport`
+4. Add plugin name: `Metamask Iframe EE`
+5. Add plugin url: `https://metamask.github.io//iframe-ee-openrpc-inspector-transport`
+6. Select `POSTMESSAGEIFRAME` as the transport type
+7. Click `Add Transport`
 
-or
-
-`npm install @metamask/this-module`
-
-## Usage
-
-_Add examples here_
-
-## API
-
-_Add examples here_
+![image](https://user-images.githubusercontent.com/364566/112074343-532d4200-8b33-11eb-8ce3-75e2f1f97ef8.png)
 
 ## Contributing
 

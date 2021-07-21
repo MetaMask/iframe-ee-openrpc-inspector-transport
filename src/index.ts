@@ -1,3 +1,4 @@
-export default function greeter(name: string): string {
-  return `Hello, ${name}!`;
-}
+import IframeInspectorTransportPlugin from './IframeInspectorTransportPlugin';
+
+const iframeInspectorTransportPlugin = new IframeInspectorTransportPlugin();
+window.addEventListener('message', iframeInspectorTransportPlugin.onMessage);

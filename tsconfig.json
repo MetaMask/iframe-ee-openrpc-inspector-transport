@@ -3,14 +3,15 @@
     "declaration": true,
     "esModuleInterop": true,
     "inlineSources": true,
-    "lib": ["ES2020"],
+    "lib": ["DOM", "ES2020"],
     "module": "CommonJS",
+    "resolveJsonModule": true,
     "moduleResolution": "Node",
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": true,
     "strict": true,
-    "target": "ES2017"
+    "target": "ES2018"
   },
   "exclude": ["./src/**/*.test.ts"],
   "include": ["./src/**/*.ts"]

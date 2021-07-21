@@ -1,27 +1,36 @@
 {
-  "name": "@metamask/module-template",
-  "version": "0.0.0",
-  "description": "The MetaMask Node module template.",
+  "name": "@metamask/openrpc-ee-inspector-transport",
+  "version": "0.0.0-development",
+  "description": "",
+  "homepage": "https://metamask.github.io/iframe-ee-openrpc-inspector-transport",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MetaMask/metamask-module-template.git"
+    "url": "https://github.com/MetaMask/iframe-ee-openrpc-inspector-transport.git"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "build/index.js",
   "files": [
-    "dist/"
+    "!webpack.config.js"
   ],
   "scripts": {
     "setup": "yarn install && yarn allow-scripts",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
     "prepublishOnly": "yarn build:clean && yarn lint && yarn test",
+    "start": "yarn typings && webpack serve --progress --mode='development'",
+    "build": "yarn typings && webpack --mode production",
+    "typings": "open-rpc-typings -d src/openrpc.json --output-ts src/__GENERATED_TYPES__/",
     "lint:eslint": "eslint . --cache --ext js,ts",
     "lint:misc": "prettier '**/*.json' '**/*.md' '!CHANGELOG.md' '**/*.yml' --ignore-path .gitignore",
     "lint": "yarn lint:eslint && yarn lint:misc --check",
     "lint:fix": "yarn lint:eslint --fix && yarn lint:misc --write",
-    "build:clean": "rimraf dist && yarn build",
-    "build": "tsc --project ."
+    "build:clean": "rimraf dist public && yarn build"
+  },
+  "dependencies": {
+    "@metamask/object-multiplex": "^1.2.0",
+    "@metamask/post-message-stream": "^4.0.0",
+    "@open-rpc/client-js": "^1.7.0",
+    "eth-rpc-errors": "^4.0.3",
+    "pump": "^3.0.0"
   },
   "devDependencies": {
     "@lavamoat/allow-scripts": "^1.0.5",
@@ -30,7 +39,9 @@
     "@metamask/eslint-config-jest": "^7.0.0",
     "@metamask/eslint-config-nodejs": "^7.0.1",
     "@metamask/eslint-config-typescript": "^7.0.1",
+    "@open-rpc/typings": "^1.9.0",
     "@types/jest": "^26.0.13",
+    "@types/pump": "^1.1.1",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "eslint": "^7.23.0",
@@ -39,12 +50,18 @@
     "eslint-plugin-jest": "^24.3.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "html-webpack-plugin": "^5.3.2",
     "jest": "^26.4.2",
+    "node-polyfill-webpack-plugin": "^1.1.4",
     "prettier": "^2.2.1",
     "prettier-plugin-packagejson": "^2.2.11",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.3.0",
-    "typescript": "^4.2.4"
+    "ts-loader": "^9.2.3",
+    "typescript": "^4.2.4",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -55,7 +72,10 @@
   },
   "lavamoat": {
     "allowScripts": {
-      "@lavamoat/preinstall-always-fail": false
+      "@lavamoat/preinstall-always-fail": false,
+      "fsevents": false,
+      "core-js-pure": false,
+      "core-js": false
     }
   }
 }

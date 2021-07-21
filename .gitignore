@@ -1,6 +1,8 @@
 .DS_Store
 dist/
 coverage/
+public/
+src/__GENERATED_TYPES__
 
 # Logs
 logs
