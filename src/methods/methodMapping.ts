@@ -1,7 +1,7 @@
 import { Close, Connect, SendData } from '../__GENERATED_TYPES__';
 import IframeExecutionEnvironmentTransport from '../transports/IframeExecutionEnvironmentTransport';
 
-export interface IMethodMapping {
+export interface MethodMapping {
   [methodName: string]: (...params: any[]) => Promise<unknown>;
 }
 
@@ -23,7 +23,7 @@ const methodMappingFactory = (
     transport.close();
   };
 
-  const methodMapping: IMethodMapping = {
+  const methodMapping: MethodMapping = {
     connect,
     sendData,
     close,
