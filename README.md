@@ -1,4 +1,4 @@
-# Metamask OpenRPC Iframe Execution Environment Transport
+# MetaMask OpenRPC Iframe Execution Environment Transport
 
 This adds [Iframe Execution Environment](https://github.com/MetaMask/iframe-execution-environment) support to the [OpenRPC inspector](http://inspector.open-rpc.org) via transport plugins.
 
@@ -7,12 +7,12 @@ This adds [Iframe Execution Environment](https://github.com/MetaMask/iframe-exec
 1. Go to http://inspector.open-rpc.org
 2. Click `HTTP` transport dropdown
 3. Select `+ Add Transport`
-4. Add plugin name: `Metamask Iframe EE`
-5. Add plugin url: `https://metamask.github.io//iframe-ee-openrpc-inspector-transport`
+4. Add plugin name: `MetaMask Iframe EE`
+5. Add plugin url: `https://metamask.github.io/iframe-ee-openrpc-inspector-transport`
 6. Select `POSTMESSAGEIFRAME` as the transport type
 7. Click `Add Transport`
 
-![image](https://user-images.githubusercontent.com/364566/112074343-532d4200-8b33-11eb-8ce3-75e2f1f97ef8.png)
+![image](https://user-images.githubusercontent.com/364566/126552925-35d95f4e-0c55-42f9-b382-57e945a98e8c.png)
 
 ## Contributing
 
