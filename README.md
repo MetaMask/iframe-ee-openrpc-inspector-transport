@@ -20,7 +20,6 @@ This adds [Iframe Execution Environment](https://github.com/MetaMask/iframe-exec
 
 ![image](https://user-images.githubusercontent.com/364566/126700835-19bd2d25-4ddb-463e-ad5e-77a42f583a9c.png)
 
-
 ## Contributing
 
 ### Setup
