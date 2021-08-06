@@ -2,7 +2,7 @@
 
 This adds [Iframe Execution Environment](https://github.com/MetaMask/iframe-execution-environment) support to the [OpenRPC inspector](http://inspector.open-rpc.org) via transport plugins.
 
-## Install Instructions
+## Instructions
 
 1. Go to http://inspector.open-rpc.org
 2. Click `HTTP` transport dropdown
@@ -13,6 +13,12 @@ This adds [Iframe Execution Environment](https://github.com/MetaMask/iframe-exec
 7. Click `Add Transport`
 
 ![image](https://user-images.githubusercontent.com/364566/126552925-35d95f4e-0c55-42f9-b382-57e945a98e8c.png)
+
+8. Add url `https://metamask.github.io/iframe-execution-environment/` in the `Enter a JSON-RPC server URL` input bar
+
+9. Make a request using the inspector
+
+![image](https://user-images.githubusercontent.com/364566/126700835-19bd2d25-4ddb-463e-ad5e-77a42f583a9c.png)
 
 ## Contributing
 
