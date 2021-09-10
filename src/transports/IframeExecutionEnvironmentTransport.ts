@@ -66,8 +66,31 @@ class IframeExecutionEnvironmentTransport extends Transport {
     this.commandStream.on('data', (data: unknown) => {
       this.transportRequestManager.resolveResponse(JSON.stringify(data));
     });
+    this.transportRequestManager.transportEventChannel.addListener(
+      'notification',
+      this.notificationHandler,
+    );
+    this.transportRequestManager.transportEventChannel.addListener(
+      'error',
+      this.errorNotificationHandler.bind(this),
+    );
     return true;
   }
+
+  private errorNotificationHandler(error: any) {
+    this.notificationHandler({
+      id: null,
+      error: {
+        code: error.code,
+        message: error.message,
+        data: error.data,
+      },
+    });
+  }
+
+  private notificationHandler = (event: any) => {
+    window.parent.postMessage(event, '*');
+  };
 
   public async sendData(
     data: IJSONRPCData,
@@ -79,6 +102,8 @@ class IframeExecutionEnvironmentTransport extends Transport {
   }
 
   public close(): void {
+    this.transportRequestManager.transportEventChannel.removeAllListeners();
+    this.commandStream?.end();
     document.getElementById(this.postMessageID)?.remove();
   }
 
