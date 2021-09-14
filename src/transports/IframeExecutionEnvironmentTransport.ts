@@ -63,7 +63,7 @@ class IframeExecutionEnvironmentTransport extends Transport {
 
     this.commandStream = mux.createStream('command') as unknown as Duplex;
 
-    this.commandStream.on('data', (data: unknown) => {
+    this.commandStream.on('data', (data: any) => {
       this.transportRequestManager.resolveResponse(JSON.stringify(data));
     });
     this.transportRequestManager.transportEventChannel.addListener(
@@ -80,7 +80,11 @@ class IframeExecutionEnvironmentTransport extends Transport {
   private errorNotificationHandler(error: any) {
     this.notificationHandler({
       id: null,
-      error,
+      error: {
+        code: error.code,
+        message: error.message,
+        data: error.data,
+      },
     });
   }
 
