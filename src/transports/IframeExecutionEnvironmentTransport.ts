@@ -4,6 +4,7 @@ import { IJSONRPCData } from '@open-rpc/client-js/build/Request';
 import { WindowPostMessageStream } from '@metamask/post-message-stream';
 import ObjectMultiplex from '@metamask/object-multiplex';
 import pump from 'pump';
+import { JSONRPCError } from '@open-rpc/client-js/build/Error';
 
 class IframeExecutionEnvironmentTransport extends Transport {
   private uri?: string;
@@ -77,7 +78,7 @@ class IframeExecutionEnvironmentTransport extends Transport {
     return true;
   }
 
-  private errorNotificationHandler(error: Error) {
+  private errorNotificationHandler(error: JSONRPCError) {
     this.notificationHandler({
       id: null,
       error: {
