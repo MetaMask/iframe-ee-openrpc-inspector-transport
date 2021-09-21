@@ -77,7 +77,7 @@ class IframeExecutionEnvironmentTransport extends Transport {
     return true;
   }
 
-  private errorNotificationHandler(error: any) {
+  private errorNotificationHandler(error: Error) {
     this.notificationHandler({
       id: null,
       error: {
