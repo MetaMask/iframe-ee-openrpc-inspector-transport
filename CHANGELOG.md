@@ -11,9 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added error and notification handling ([#7])[https://github.com/MetaMask/iframe-ee-openrpc-inspector-transport/pull/7]
 - Added instructions in the README.md for adding iframe url to input bar ([#5](https://github.com/MetaMask/iframe-ee-openrpc-inspector-transport/pull/5
 
-### Changed
-- Changed README.md via lint:fix
-
 ## [0.0.1]
 ### Added
 - github pages release
