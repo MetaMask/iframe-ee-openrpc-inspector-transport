@@ -14,7 +14,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Changed README.md via lint:fix
 
-
 ## [0.0.1]
 ### Added
 - github pages release
