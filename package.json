@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@metamask/object-multiplex": "^1.2.0",
-    "@metamask/post-message-stream": "^4.0.0",
+    "@metamask/post-message-stream": "^5.1.0",
     "@open-rpc/client-js": "^1.7.0",
     "eth-rpc-errors": "^4.0.3",
     "pump": "^3.0.0"
