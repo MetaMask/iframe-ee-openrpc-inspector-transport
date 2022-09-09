@@ -16,6 +16,7 @@ module.exports = (_, argv) => {
       devtool: 'inline-source-map',
     };
   }
+
   const config = Object.assign(extraOptions, {
     mode: argv.mode || 'development',
     entry: './src/index.ts',
@@ -25,9 +26,11 @@ module.exports = (_, argv) => {
       publicPath: DIST,
     },
     devServer: {
-      contentBase: DIST,
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      static: [DIST],
       port: 3000,
-      writeToDisk: true,
     },
     plugins: [
       new HtmlWebpackPlugin(htmlwebpackOptions),
@@ -46,5 +49,6 @@ module.exports = (_, argv) => {
       extensions: ['.ts', '.js'],
     },
   });
+
   return config;
 };
