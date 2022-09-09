@@ -26,9 +26,11 @@ module.exports = (_, argv) => {
       publicPath: DIST,
     },
     devServer: {
-      contentBase: DIST,
+      devMiddleware: {
+        writeToDisk: true,
+      },
+      static: [DIST],
       port: 3000,
-      writeToDisk: true,
     },
     plugins: [
       new HtmlWebpackPlugin(htmlwebpackOptions),
