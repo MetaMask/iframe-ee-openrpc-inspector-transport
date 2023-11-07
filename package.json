@@ -1,6 +1,6 @@
 {
   "name": "@metamask/openrpc-ee-inspector-transport",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "",
   "homepage": "https://metamask.github.io/iframe-ee-openrpc-inspector-transport",
   "repository": {
