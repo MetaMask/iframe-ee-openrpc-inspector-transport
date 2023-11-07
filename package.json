@@ -26,7 +26,7 @@
     "build:clean": "rimraf dist public && yarn build"
   },
   "dependencies": {
-    "@metamask/object-multiplex": "^1.2.0",
+    "@metamask/object-multiplex": "^2.0.0",
     "@metamask/post-message-stream": "^6.0.0",
     "@open-rpc/client-js": "^1.7.0",
     "eth-rpc-errors": "^4.0.3",
